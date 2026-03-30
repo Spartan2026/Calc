@@ -28,11 +28,16 @@ window.title("Calculator")
 # to make window unresizable by both width and height
 window.resizable(False,False)
 # we want the program to keep running and keep the window open
-window.mainloop()
 
 # to add componenets to our window, we need to create frame first.
 frame = tkinter.Frame(window) # placing the frame inside window
 
 label = tkinter.Label(frame, font=("Arial",45),background=color_black, 
                       foreground=color_white)
+
+label.grid(row=0, column=0)
+frame.pack()
+
+# we want the program to keep running and keep the window open
+window.mainloop()
 
