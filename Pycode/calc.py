@@ -32,7 +32,7 @@ window.resizable(False,False)
 # to add componenets to our window, we need to create frame first.
 frame = tkinter.Frame(window) # placing the frame inside window
 
-label = tkinter.Label(frame, font=("Arial",45),background=color_black, 
+label = tkinter.Label(frame,text="0", font=("Arial",45),background=color_black, 
                       foreground=color_white)
 
 label.grid(row=0, column=0)
