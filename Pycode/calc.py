@@ -33,11 +33,39 @@ window.resizable(False,False)
 frame = tkinter.Frame(window) # placing the frame inside window
 
 label = tkinter.Label(frame,text="0", font=("Arial",45),background=color_black, 
-                      foreground=color_white)
-
-label.grid(row=0, column=0)
+                      foreground=color_white,anchor="e")
+# the text label should take up the entire column space
+# columns span refers to how mnay columns this label should take
+# to stretch out the color to take up all 4 coumns,
+# in tkinter, left-> west, right->east, up-->north, down-> south
+label.grid(row=0, column=0,columnspan=column_count,sticky="we")
 frame.pack()
+
+
+
+# for creating the button we are going to iterate over the 2D list of button_values
+
+for row in range(row_count):
+    for column in range(column_count):
+        value = button_values[row][column]
+        # creates the button and places it inside the frame.
+        button = tkinter.Button(frame, text=value, font=("Arial",30),
+                                width=column_count-1,height=1,
+                                command=lambda value=value: button_clicked(value))
+        
+        # adds colors to buttons
+        if value in top_symbols:
+            button.config(foreground=color_black,background=color_light_gray)
+        elif value in right_symbols:
+            button.config(foreground=color_white, background=color_orange)
+        else:
+            button.config(foreground=color_white, background=color_dark_gray)
+        # to order the button in grid layout
+        button.grid(row=row+1,column=column)
+
+
+def button_clicked(value):
+    pass
 
 # we want the program to keep running and keep the window open
 window.mainloop()
-
