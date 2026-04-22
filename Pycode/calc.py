@@ -63,9 +63,20 @@ for row in range(row_count):
         # to order the button in grid layout
         button.grid(row=row+1,column=column)
 
+# to centre the window, we need to get the current width and height of our window and screen
+window.update()
+window_width= window.winfo_width()
+window_height = window.winfo_height()
+# we need to get the width and height of our computer screen
+screen_width = window.winfo_width()
+screen_height = window.winfo_height()
 
+window_x = int((window_width/2)- (window_width/2))
+window_y = int((window_height/2)- (window_height/2))
+
+window.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
 def button_clicked(value):
     pass
 
 # we want the program to keep running and keep the window open
-window.mainloop()
+window.mainloop() # update window with the new size dimensions
