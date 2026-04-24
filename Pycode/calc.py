@@ -71,13 +71,20 @@ frame.pack()
 def clear_all():
     """
     function for clearing the display
-    Pre-condition: Non
+    Pre-conditions: None
+    Post-conditions: the display should be cleared.
+    Return: None
     """
     global A, B, operator
     A = "0"
     operator = None
     B = None
 
+def remove_zero_decimals(num):
+    # no decimal remaining
+    if num % 1 == 0:
+        num = int(num)
+    return str(num)
 
 def button_clicked(value):
     global right_symbols, top_symbols, label, A, B, operator
@@ -89,9 +96,12 @@ def button_clicked(value):
             clear_all()
             label["text"] = "0"
         elif value == "+/-":
-            pass
+            # we can't convert a text into integer because we will lose any potential decimal places
+            result = float(label["text"]) * -1
+            label["text"] = remove_zero_decimals(result)
         elif value == "%":
-            pass
+            result = float(label["text"]) / 100
+            label["text"] = remove_zero_decimals(result)
     
     else: # digit or .
         if value == ".":
