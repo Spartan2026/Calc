@@ -66,6 +66,9 @@ for row in range(row_count):
 
 frame.pack()
 # A+B, A-B, A*B, A/B
+A = "0"
+operator = None
+B = None
 
 
 def clear_all():
@@ -90,7 +93,29 @@ def button_clicked(value):
     global right_symbols, top_symbols, label, A, B, operator
 
     if value in right_symbols:
-        pass
+        if value == "=":
+            # we have A and operator
+            if A is not None and operator is not None:
+                B = label["text"]
+                numA = float(A)
+                numB = float(B)
+
+                if operator == "+":
+                    label["text"] = remove_zero_decimals(numA + numB)
+                elif operator == "-":
+                    label["text"] = remove_zero_decimals(numA - numB)
+                elif operator == "×":
+                    label["text"] = remove_zero_decimals(numA * numB)
+                elif operator == "÷":
+                    label["text"] = remove_zero_decimals(numA / numB)
+                clear_all()
+        elif value in "+-×÷": # 500 +. *
+            if operator is None:
+                A = label["text"]
+                label["text"] = "0"
+                B = "0"
+            operator = value
+
     elif value in top_symbols:
         if value == "AC":
             clear_all()
